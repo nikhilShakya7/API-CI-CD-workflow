@@ -1,0 +1,17 @@
+{
+  "name": "qa-api-ci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node run-newman.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "newman": "^6.2.2"
+  }
+}

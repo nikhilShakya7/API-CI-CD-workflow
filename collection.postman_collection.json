@@ -1,0 +1,234 @@
+{
+  "info": {
+    "_postman_id": "65a6e49b-9f6a-4895-a851-3cd35196f875",
+    "name": "/posts",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48127666"
+  },
+  "item": [
+    {
+      "name": "GET",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful request\",()=>{",
+              "    pm.expect(pm.response.code).to.eql(200)",
+              "})",
+              "",
+              "pm.test(\"Response body is an array\",()=>{",
+              "    pm.expect(pm.response.json()).to.be.an('array')",
+              "})",
+              "",
+              "pm.test(\"Response time is less than 1000ms\",()=>{",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000)",
+              "})",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/posts",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "posts"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "3",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "userId",
+              "value": "3",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "id",
+              "value": "22",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Retrieves a list of all posts from the JSONPlaceholder API.\n\n**Endpoint:** `GET https://jsonplaceholder.typicode.com/posts`\n\n**Authentication:** None required.\n\n**Request Parameters:** None.\n\n**Response:**\nReturns a JSON array of post objects. Each object contains:\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `id` | integer | Unique identifier for the post |\n| `userId` | integer | ID of the user who created the post |\n| `title` | string | Title of the post |\n| `body` | string | Body/content of the post |\n\n**Example Response:**\n```json\n[\n  {\n    \"userId\": 1,\n    \"id\": 1,\n    \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n    \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n  }\n]\n```\n\n**Status Codes:**\n- `200 OK` — Request was successful and posts are returned."
+      },
+      "response": []
+    },
+    {
+      "name": "POST",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "  pm.expect(pm.response.code).to.eql(201);",
+              "})",
+              "",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "    })"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[{\n  \"title\": \"My First Test\",\n  \"body\": \"Learning API testing\",\n  \"userId\": 5\n},\n\n{\n  \"title\": \"My second Test\",\n  \"body\": \"Learning API testing2\",\n  \"userId\": 2\n}]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/posts",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response has status code 200\", function () {",
+              "    pm.expect(pm.response.code).to.eql(200)",
+              "})",
+              "",
+              "pm.test(\"Response body is empty\", function () {",
+              "    pm.expect(pm.response.text()).to.eql(\"{}\")",
+              "})",
+              "",
+              "pm.test(\"Response time is less than 1000ms\",()=>{",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000)",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My First Test\",\n  \"body\": \"Learning API testing\",\n  \"userId\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseURL}}/posts/2",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "posts",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Patch Request",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n    {\n        \"userId\": 4,\n        \"id\": 1,\n        \"title\": \"PATCH REQUEST\",\n        \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n    }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/posts/1",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Put Request",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": " {\n    \"userId\": 100,\n    \"id\": 3,\n    \"title\": \"Put request\",\n    \"body\": \"This is a put\"\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/posts/3",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "posts",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+"variable": [
+    {
+      "key": "baseURL",
+      "value": "https://jsonplaceholder.typicode.com"
+    }
+  ]
+}
