@@ -2,11 +2,13 @@ const { execSync } = require("node:child_process");
 const path = require("node:path");
 const dotenv = require("dotenv");
 
-const env = dotenv.config({ path: path.join(__dirname, ".env") }).parsed || {};
-const baseUrl = env.BASE_URL || env.baseURL;
+const envResult = dotenv.config({ path: path.join(__dirname, ".env") });
+const env = envResult.parsed || {};
+const baseUrl =
+  process.env.BASE_URL || process.env.baseURL || env.BASE_URL || env.baseURL;
 
 if (!baseUrl) {
-  console.error("Missing BASE_URL in .env");
+  console.error("Missing BASE_URL. Set BASE_URL in the environment or .env");
   process.exit(1);
 }
 
