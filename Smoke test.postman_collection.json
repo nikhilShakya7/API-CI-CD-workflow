@@ -5,6 +5,7 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "48127666"
   },
+
   "item": [
     {
       "name": "Get post Copy",
@@ -13,7 +14,7 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.test(\"Status code  200\", function () {\r",
               "    pm.response.to.have.status(200);\r",
               "});\r",
               "\r",
